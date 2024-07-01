@@ -7,7 +7,14 @@ export class DriverStandingsResolver {
   constructor(private prisma: PrismaService) {}
 
   @Query((returns) => DriverStandings)
-  async getDriverStandings() {
-    return await this.prisma.driverStanding.findMany();
+  async getDriverStandings(): Promise<DriverStandings[]> {
+    // return await this.prisma.driverStanding.findMany();
+    return [
+      {
+        driverId: "human-endeavour",
+        point: 100,
+        position: 1,
+      },
+    ];
   }
 }

@@ -2,12 +2,9 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { EngineManufacturer as EngineManufacturerModel } from "@prisma/client";
 
 @ObjectType()
-export class EngineManufacturer implements EngineManufacturerModel {
+export class EngineManufacturer implements Omit<EngineManufacturerModel, "id"> {
   @Field()
-  country: string;
-
-  @Field()
-  id: string;
+  countryId: string;
 
   @Field()
   name: string;

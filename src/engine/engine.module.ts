@@ -1,8 +1,9 @@
-import {Module} from "@nestjs/common";
-import {EngineResolver} from "./engine.resolver";
+import { Module } from "@nestjs/common";
 import { PrismaService } from "src/prisma.service";
+import { EngineResolver } from "./engine.resolver";
+import { EngineService } from "./engine.service";
 
 @Module({
-    providers:[PrismaService,EngineResolver]
+  providers: [PrismaService, EngineResolver, EngineService],
 })
-export class EngineModule{}
+export class EngineModule {}

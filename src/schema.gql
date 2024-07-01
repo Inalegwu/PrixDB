@@ -2,9 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Driver {
+  constructorId: String!
+  driverId: String!
+}
+
 type EngineManufacturer {
-  country: String!
-  id: String!
+  countryId: String!
   name: String!
 }
 
@@ -13,7 +17,6 @@ type FastestLap {
 }
 
 type GrandPrix {
-  id: String!
   abbreviation: String!
   countryId: String!
   fullName: String!
@@ -23,21 +26,19 @@ type GrandPrix {
 
 type ConstructorStandings {
   constructorId: String!
-  id: String!
   position: Int!
   points: Int!
 }
 
 type DriverStandings {
   driverId: String!
-  id: String!
   point: Int!
   position: Int!
 }
 
 type TyreManufacturer {
-  country: String!
   id: String!
+  countryId: String!
   name: String!
 }
 
@@ -48,4 +49,5 @@ type Query {
   getFastestLaps: [FastestLap!]!
   getEngineManufacturers: [EngineManufacturer!]!
   getTyreManufacturer: [TyreManufacturer!]!
+  getDriverByDriverId(driverId: String!): Driver!
 }

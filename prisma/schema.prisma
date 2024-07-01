@@ -48,7 +48,8 @@ model EngineManufacturer{
 
   name String @unique
 
-  country String
+  countryId String
+  country Country @relation(fields: [countryId],references: [countryId])
 
 constructors Constructor[]
 
@@ -59,7 +60,8 @@ model TyreManufacturer{
 
   name String
 
-  country String
+  countryId String
+  country Country @relation(fields: [countryId],references: [countryId])
 
 constructors Constructor[]
 
@@ -103,5 +105,21 @@ shortName String
 abbreviation String
 
 countryId String @unique
+country Country @relation(fields: [countryId],references: [countryId])
+
+}
+
+model Country{
+  id String @default(uuid()) @unique
+
+name String
+
+countryId String @unique
+
+grandPrix GrandPrix[]
+
+tyreManufacturers TyreManufacturer[]
+
+engineManufacturers EngineManufacturer[]
 
 }

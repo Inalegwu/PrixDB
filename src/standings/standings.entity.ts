@@ -2,12 +2,9 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import type { ConstructorStanding, DriverStanding } from "@prisma/client";
 
 @ObjectType()
-export class ConstructorStandings implements ConstructorStanding {
+export class ConstructorStandings implements Omit<ConstructorStanding, "id"> {
   @Field()
   constructorId: string;
-
-  @Field()
-  id: string;
 
   @Field(() => Int)
   position: number;
@@ -17,12 +14,9 @@ export class ConstructorStandings implements ConstructorStanding {
 }
 
 @ObjectType()
-export class DriverStandings implements DriverStanding {
+export class DriverStandings implements Omit<DriverStanding, "id"> {
   @Field()
   driverId: string;
-
-  @Field()
-  id: string;
 
   @Field(() => Int)
   point: number;

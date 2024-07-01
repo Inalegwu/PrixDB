@@ -4,10 +4,10 @@ import { TyreManufacturer as TyreManufacturerModel } from "@prisma/client";
 @ObjectType()
 export class TyreManufacturer implements TyreManufacturerModel {
   @Field()
-  country: string;
+  id: string;
 
   @Field()
-  id: string;
+  countryId: string;
 
   @Field()
   name: string;

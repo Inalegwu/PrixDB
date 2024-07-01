@@ -1,13 +1,13 @@
 import { Query, Resolver } from "@nestjs/graphql";
-import { PrismaService } from "src/prisma.service";
 import { EngineManufacturer } from "./engine.entity";
+import { EngineService } from "./engine.service";
 
 @Resolver(() => EngineManufacturer)
 export class EngineResolver {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly engine: EngineService) {}
 
   @Query((returns) => [EngineManufacturer])
   async getEngineManufacturers() {
-    return await this.prisma.engineManufacturer.findMany();
+    return await this.engine.getEngineManufacturers();
   }
 }

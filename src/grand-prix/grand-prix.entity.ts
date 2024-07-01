@@ -2,10 +2,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import type { GrandPrix as GrandPrixModel } from "@prisma/client";
 
 @ObjectType()
-export class GrandPrix implements GrandPrixModel {
-  @Field()
-  id: string;
-
+export class GrandPrix implements Omit<GrandPrixModel, "id"> {
   @Field()
   abbreviation: string;
 

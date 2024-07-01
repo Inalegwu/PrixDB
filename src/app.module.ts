@@ -1,6 +1,7 @@
 import { ApolloDriver, type ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
+import { DriverModule } from "./driver/driver.module";
 import { EngineModule } from "./engine/engine.module";
 import { FastestLapModule } from "./fastest-laps/fastest-lap.module";
 import { GrandPrixModule } from "./grand-prix/grand-prix.module";
@@ -19,6 +20,7 @@ import { TyreModule } from "./tyres/tyre.module";
     FastestLapModule,
     EngineModule,
     TyreModule,
+    DriverModule,
   ],
   controllers: [],
   providers: [ProcessService],

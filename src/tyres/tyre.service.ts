@@ -6,6 +6,10 @@ export class TyreService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getTyreManufacturers() {
-    return this.prisma.tyreManufacturer.findMany();
+    return this.prisma.tyreManufacturer.findMany({
+      include: {
+        country: true,
+      },
+    });
   }
 }
