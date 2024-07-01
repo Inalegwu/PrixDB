@@ -13,10 +13,95 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Todo{
+
+model Constructor{
   id String @default(uuid()) @unique
 
-  content String
+  entrantId String @unique
 
-  isDone Boolean @default(false)
+  drivers Driver[]
+
+tyreManufacturerId String
+  tyreManufacturer TyreManufacturer @relation(fields: [tyreManufacturerId],references: [id])
+
+standing ConstructorStanding?
+
+engineManufacturerId String
+engineManufacturer EngineManufacturer @relation(fields: [engineManufacturerId],references: [name])
+
+}
+
+model Driver{
+  id String @default(uuid()) @unique
+
+driverId String @unique
+
+constructorId String
+constructor Constructor @relation(fields: [constructorId],references: [id])
+
+standing DriverStanding?
+
+}
+
+model EngineManufacturer{
+  id String @default(uuid()) @unique
+
+  name String @unique
+
+  country String
+
+constructors Constructor[]
+
+}
+
+model TyreManufacturer{
+  id String @default(uuid()) @unique
+
+  name String
+
+  country String
+
+constructors Constructor[]
+
+}
+
+model DriverStanding{
+  id String @default(uuid()) @unique
+
+  driverId String @unique
+  driver Driver? @relation(fields: [driverId],references: [driverId])
+
+  position Int
+
+  point Int
+
+}
+
+model ConstructorStanding{
+  id String @default(uuid()) @unique
+
+
+constructorId String @unique
+constructor Constructor? @relation(fields: [constructorId],references: [entrantId])
+
+
+points Int
+
+position Int
+
+}
+
+model GrandPrix{
+  id String @default(uuid()) @unique
+
+name String
+
+fullName String
+
+shortName String
+
+abbreviation String
+
+countryId String @unique
+
 }

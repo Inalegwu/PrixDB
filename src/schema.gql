@@ -2,23 +2,50 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Todo {
+type EngineManufacturer {
+  country: String!
   id: String!
-  content: String!
-  isDone: Boolean!
+  name: String!
+}
+
+type FastestLap {
+  id: String!
+}
+
+type GrandPrix {
+  id: String!
+  abbreviation: String!
+  countryId: String!
+  fullName: String!
+  name: String!
+  shortName: String!
+}
+
+type ConstructorStandings {
+  constructorId: String!
+  id: String!
+  position: Int!
+  points: Int!
+}
+
+type DriverStandings {
+  driverId: String!
+  id: String!
+  point: Int!
+  position: Int!
+}
+
+type TyreManufacturer {
+  country: String!
+  id: String!
+  name: String!
 }
 
 type Query {
-  getTodos: [Todo!]!
-}
-
-type Mutation {
-  saveTodo(todo: CreateTodo!): Todo!
-  deleteTodo(todoId: String!): Todo!
-  updateTodo(id: String!, content: String!): Todo!
-}
-
-input CreateTodo {
-  content: String
-  isDone: Boolean! = false
+  getAllGrandPrix: [GrandPrix!]!
+  getConstructorStandings: ConstructorStandings!
+  getDriverStandings: DriverStandings!
+  getFastestLaps: [FastestLap!]!
+  getEngineManufacturers: [EngineManufacturer!]!
+  getTyreManufacturer: [TyreManufacturer!]!
 }

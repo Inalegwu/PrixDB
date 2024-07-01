@@ -9,7 +9,7 @@
       "recommended": true,
       "correctness": {
         "noUnusedLabels": "error",
-        "noUnusedVariables": "warn",
+        "noUnusedVariables": "off",
         "noUnreachable": "error",
         "useExhaustiveDependencies": "warn"
       },
@@ -19,7 +19,8 @@
       },
       "style": {
         "noUselessElse": "warn",
-        "noNonNullAssertion": "warn"
+        "noNonNullAssertion": "warn",
+        "useImportType": "off"
       },
       "suspicious": {
         "noExplicitAny": "warn"
