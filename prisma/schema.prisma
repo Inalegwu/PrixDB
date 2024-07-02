@@ -19,6 +19,8 @@ model Constructor{
 
   entrantId String @unique
 
+  constructorId String @unique
+
   drivers Driver[]
 
 tyreManufacturerId String
@@ -28,6 +30,9 @@ standing ConstructorStanding?
 
 engineManufacturerId String
 engineManufacturer EngineManufacturer @relation(fields: [engineManufacturerId],references: [name])
+
+fastestLaps FastestLap[]
+driverOfTheDay DriverOfTheDay[]
 
 }
 
@@ -41,6 +46,8 @@ constructor Constructor @relation(fields: [constructorId],references: [id])
 
 standing DriverStanding?
 
+fastestLaps FastestLap[]
+
 }
 
 model EngineManufacturer{
@@ -52,18 +59,20 @@ model EngineManufacturer{
   country Country @relation(fields: [countryId],references: [countryId])
 
 constructors Constructor[]
+driverOfTheDay DriverOfTheDay[]
 
 }
 
 model TyreManufacturer{
   id String @default(uuid()) @unique
 
-  name String
+  name String @unique
 
   countryId String
   country Country @relation(fields: [countryId],references: [countryId])
 
 constructors Constructor[]
+driverOfTheDay DriverOfTheDay[]
 
 }
 
@@ -96,6 +105,8 @@ position Int
 model GrandPrix{
   id String @default(uuid()) @unique
 
+  grandPrixId String @unique
+
 name String
 
 fullName String
@@ -106,6 +117,8 @@ abbreviation String
 
 countryId String @unique
 country Country @relation(fields: [countryId],references: [countryId])
+
+race Race?
 
 }
 
@@ -122,4 +135,57 @@ tyreManufacturers TyreManufacturer[]
 
 engineManufacturers EngineManufacturer[]
 
+}
+
+model FastestLap{
+  id String @default(uuid()) @unique
+
+position Int
+
+driverNumber Int
+
+driverId String @unique
+driver Driver @relation(fields: [driverId],references: [driverId])
+
+constructorId String @unique
+constructor Constructor @relation(fields: [constructorId],references: [constructorId])
+
+}
+
+
+model DriverOfTheDay{
+  id String @default(uuid()) @unique
+
+
+position Int
+
+driverNumber Int
+
+
+constructorId String @unique
+constructor Constructor @relation(fields: [constructorId],references: [constructorId])
+
+
+engineManufacturerId String @unique
+engineManufacturer EngineManufacturer @relation(fields: [engineManufacturerId],references: [name])
+
+
+tyreManufacturerID String @unique
+tyreManufacturer TyreManufacturer @relation(fields: [tyreManufacturerID],references: [name])
+
+percentage Float
+
+}
+
+model Race{
+  id String @default(uuid()) @unique
+
+  round Int
+
+  date DateTime
+
+  time String
+
+  grandPrixId String @unique
+  grandPrix GrandPrix @relation(fields: [grandPrixId],references: [grandPrixId])
 }

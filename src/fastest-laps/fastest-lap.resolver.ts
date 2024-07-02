@@ -1,4 +1,4 @@
-import { Query, Resolver } from "@nestjs/graphql";
+import { Args, Query, Resolver } from "@nestjs/graphql";
 import { FastestLap } from "./fastest-lap.entity";
 import { FastestLapService } from "./fastest-lap.service";
 
@@ -9,5 +9,12 @@ export class FastestLapResolver {
   @Query((returns) => [FastestLap])
   async getFastestLaps() {
     return this.fastestLaps.getFastestLaps();
+  }
+
+  @Query((returns)=>FastestLap)
+  async getFastestLapByRaceId(@Args({
+    name:"raceId"
+  }) raceId:string){
+    return this.fastestLaps.getFastestLapByRaceId(raceId)
   }
 }

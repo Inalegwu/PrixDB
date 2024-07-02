@@ -1,4 +1,4 @@
-import { Query, Resolver } from "@nestjs/graphql";
+import { Args, Query, Resolver } from "@nestjs/graphql";
 import { PrismaService } from "src/prisma.service";
 import { DriverStandings } from "./standings.entity";
 
@@ -6,7 +6,7 @@ import { DriverStandings } from "./standings.entity";
 export class DriverStandingsResolver {
   constructor(private prisma: PrismaService) {}
 
-  @Query((returns) => DriverStandings)
+  @Query((returns) => [DriverStandings])
   async getDriverStandings(): Promise<DriverStandings[]> {
     // return await this.prisma.driverStanding.findMany();
     return [
@@ -16,5 +16,16 @@ export class DriverStandingsResolver {
         position: 1,
       },
     ];
+  }
+
+  @Query((returns)=>DriverStandings)
+  async getStandingForDriver(@Args({
+    name:"driverId"
+  }) driverId:string){
+    return await this.prisma.driverStanding.findFirst({
+      where:{
+        driverId
+      }
+    })
   }
 }

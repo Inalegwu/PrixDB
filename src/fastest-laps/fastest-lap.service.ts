@@ -8,4 +8,8 @@ export class FastestLapService {
   async getFastestLaps() {
     return [];
   }
+
+  async getFastestLapByRaceId(raceId: string) {
+    return [];
+  }
 }

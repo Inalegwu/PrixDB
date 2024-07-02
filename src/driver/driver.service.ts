@@ -12,4 +12,8 @@ export class DriverService {
       },
     });
   }
+
+  async getAllDrivers() {
+    return await this.prisma.driver.findMany();
+  }
 }

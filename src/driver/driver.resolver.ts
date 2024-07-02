@@ -12,4 +12,9 @@ export class DriverResolver {
     }) driverId:string){
         return this.driver.getDriver(driverId)
     }
+
+  @Query((returns) => [Driver])
+  async getAllDrivers() {
+    return await this.driver.getAllDrivers();
+  }
 }

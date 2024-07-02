@@ -50,4 +50,5 @@ type Query {
   getEngineManufacturers: [EngineManufacturer!]!
   getTyreManufacturer: [TyreManufacturer!]!
   getDriverByDriverId(driverId: String!): Driver!
+  getAllDrivers: [Driver!]!
 }
